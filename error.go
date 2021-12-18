@@ -20,15 +20,15 @@ const (
 // Error represents an error during the parsing
 type Error struct {
 	// Line returns the line of the error
-	Line   int
+	Line int
 	// Code returns the error code of the error
-	Code   ErrorCode
+	Code ErrorCode
 	// returns the name of the element generating the error
 	Reason string
 }
 
 func (e Error) Error() string {
-	return e.defaultMessage()
+	return fmt.Sprintf("line %d: %s", e.Line, e.defaultMessage())
 }
 
 func (e Error) defaultMessage() string {
