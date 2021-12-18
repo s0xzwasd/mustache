@@ -17,9 +17,13 @@ const (
 	ErrUnmatchedCloseTag     ErrorCode = "unmatched_close_tag"
 )
 
+// Error represents an error during the parsing
 type Error struct {
+	// Line returns the line of the error
 	Line   int
+	// Code returns the error code of the error
 	Code   ErrorCode
+	// returns the name of the element generating the error
 	Reason string
 }
 
