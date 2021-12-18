@@ -4,19 +4,23 @@ import (
 	"fmt"
 )
 
+// ErrorCode is the list of allowed values for the error's code.
+type ErrorCode string
+
+// List of values that ErrorCode can take.
 const (
-	ErrUnmatchedOpenTag      = "unmatched-open-tag"
-	ErrEmptyTag              = "empty-tag"
-	ErrSectionNoClosingTag   = "section-no-closing-tag"
-	ErrInterleavedClosingTag = "interleaved-closing-tag"
-	ErrInvalidMetaTag        = "invalid-meta-tag"
-	ErrUnmatchedCloseTag     = "unmatched-close-tag"
+	ErrUnmatchedOpenTag      ErrorCode = "unmatched_open_tag"
+	ErrEmptyTag              ErrorCode = "empty_tag"
+	ErrSectionNoClosingTag   ErrorCode = "section_no_closing_tag"
+	ErrInterleavedClosingTag ErrorCode = "interleaved_closing_tag"
+	ErrInvalidMetaTag        ErrorCode = "invalid_meta_tag"
+	ErrUnmatchedCloseTag     ErrorCode = "unmatched_close_tag"
 )
 
 type Error struct {
-	Line    int
-	Code    string
-	Reason  string
+	Line   int
+	Code   ErrorCode
+	Reason string
 }
 
 func (e Error) Error() string {
@@ -42,18 +46,18 @@ func (e Error) defaultMessage() string {
 	}
 }
 
-func newError(line int, code string) Error {
+func newError(line int, code ErrorCode) Error {
 	return Error{
-		Line:    line,
-		Code:    code,
-		Reason:  "",
+		Line:   line,
+		Code:   code,
+		Reason: "",
 	}
 }
 
-func newErrorWithReason(line int, code, reason string) Error {
+func newErrorWithReason(line int, code ErrorCode, reason string) Error {
 	return Error{
-		Line:    line,
-		Code:    code,
-		Reason:  reason,
+		Line:   line,
+		Code:   code,
+		Reason: reason,
 	}
 }
