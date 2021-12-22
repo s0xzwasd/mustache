@@ -1,4 +1,4 @@
-module github.com/cbroglie/mustache
+module github.com/s0xzwasd/mustache
 
 go 1.17
 
